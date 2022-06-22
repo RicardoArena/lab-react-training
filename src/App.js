@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { IdCard } from './components/IdCard/index';
 import { Greetings } from './components/Greetings/index';
 import { Random } from './components/Random/index';
@@ -5,8 +6,17 @@ import { BoxColor } from './components/Boxcolor/index';
 import { CreditCard } from './components/CreditCard/index';
 import { Rating } from './components/Rating/index';
 import { DriverCard } from './components/DriverCard/index';
+import { LikeButton } from './components/LikeButton';
+import { ClickablePicture } from './components/ClickablePicture';
+import img from './assets/images/maxence.png';
+import imgClicked from './assets/images/maxence-glasses.png';
 
 function App() {
+  const [src, setImgClick] = useState(img);
+
+  function imgClick() {
+    src === img ? setImgClick(imgClicked) : setImgClick(img);
+  }
   return (
     <div className="App">
       <IdCard
@@ -100,7 +110,17 @@ function App() {
             model: 'Audi A3',
             licensePlate: 'BE33ER',
           }}
-        />{' '}
+        />
+      </div>
+      <div>
+        <LikeButton />
+      </div>
+      <div>
+        <ClickablePicture
+          src={src}
+          // imgClicked={imgClicked}
+          onClickFunction={imgClick}
+        />
       </div>
     </div>
   );
