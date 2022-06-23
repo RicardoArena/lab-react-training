@@ -10,6 +10,14 @@ import { LikeButton } from './components/LikeButton';
 import { ClickablePicture } from './components/ClickablePicture';
 import img from './assets/images/maxence.png';
 import imgClicked from './assets/images/maxence-glasses.png';
+import { Dice } from './components/Dice';
+import Dice0 from './assets/images/dice-empty.png';
+import Dice1 from './assets/images/dice1.png';
+import Dice2 from './assets/images/dice2.png';
+import Dice3 from './assets/images/dice3.png';
+import Dice4 from './assets/images/dice4.png';
+import Dice5 from './assets/images/dice5.png';
+import Dice6 from './assets/images/dice6.png';
 
 function App() {
   const [src, setImgClick] = useState(img);
@@ -17,6 +25,17 @@ function App() {
   function imgClick() {
     src === img ? setImgClick(imgClicked) : setImgClick(img);
   }
+
+  const diceList = [Dice1, Dice2, Dice3, Dice4, Dice5, Dice6];
+  const [dice, setDice] = useState(Dice0);
+
+  function rollDice() {
+    setDice(Dice0);
+    setTimeout(() => {
+      setDice(diceList[Math.floor(Math.random() * diceList.length)]);
+    }, 1000);
+  }
+
   return (
     <div className="App">
       <IdCard
@@ -121,6 +140,9 @@ function App() {
           // imgClicked={imgClicked}
           onClickFunction={imgClick}
         />
+      </div>
+      <div>
+        <Dice src={dice} theFunction={rollDice} />
       </div>
     </div>
   );
